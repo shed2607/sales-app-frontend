@@ -61,7 +61,7 @@ const UserPage = () => {
 
     checkAuthorization();
     fetchData();
-  }, []);
+  }, [router]);
 
   const openAddUserModal = () => {
     setNewUser({ name: "", username: "", password: "", position: "" });
@@ -171,44 +171,47 @@ const UserPage = () => {
             <NoUserPage />
           ) : (
             <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td
-                    className={`border px-4 py-2 ${
-                      user.active ? "bg-green-400" : "bg-red-400"
-                    }`}
-                  >
-                    {user.active ? "Active" : "Inactive"}
-                  </td>
-                  <td className="border px-4 py-2">{user.name}</td>
-                  <td className="border px-4 py-2">{user.username}</td>
-                  <td className="border px-4 py-2">{user.position}</td>
-                  <td className="flex border px-4 py-2 justify-evenly">
-                    <button
-                      onClick={() => handleDisableUser(user._id)}
-                      className={`px-2 py-1 rounded ${
-                        user.active
-                          ? "bg-yellow-500 text-white"
-                          : "bg-green-500 text-white"
-                      }`}
-                    >
-                      {user.active ? "Disable" : "Enable"}
-                    </button>
-                    <button
-                      onClick={() => openEditUserModal(user)}
-                      className="bg-blue-500 text-white px-2 py-1 rounded"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDeleteUser(user._id)}
-                      className="bg-red-500 text-white px-2 py-1 rounded"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {users.map(
+                (user) =>
+                  user.position !== "admin" && (
+                    <tr key={user._id}>
+                      <td
+                        className={`border px-4 py-2 ${
+                          user.active ? "bg-green-400" : "bg-red-400"
+                        }`}
+                      >
+                        {user.active ? "Active" : "Inactive"}
+                      </td>
+                      <td className="border px-4 py-2">{user.name}</td>
+                      <td className="border px-4 py-2">{user.username}</td>
+                      <td className="border px-4 py-2">{user.position}</td>
+                      <td className="flex border px-4 py-2 justify-evenly">
+                        <button
+                          onClick={() => handleDisableUser(user._id)}
+                          className={`px-2 py-1 rounded ${
+                            user.active
+                              ? "bg-yellow-500 text-white"
+                              : "bg-green-500 text-white"
+                          }`}
+                        >
+                          {user.active ? "Disable" : "Enable"}
+                        </button>
+                        <button
+                          onClick={() => openEditUserModal(user)}
+                          className="bg-blue-500 text-white px-2 py-1 rounded"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteUser(user._id)}
+                          className="bg-red-500 text-white px-2 py-1 rounded"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  )
+              )}
             </tbody>
           )}
         </table>

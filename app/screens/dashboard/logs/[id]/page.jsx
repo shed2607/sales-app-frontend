@@ -133,11 +133,6 @@ export default function Page() {
         </table>
       </div>
 
-      <footer className="w-full">
-        <p className="text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Next.js Example
-        </p>
-      </footer>
       <Toaster />
     </div>
   );

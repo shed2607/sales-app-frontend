@@ -91,6 +91,11 @@ export function DefaultSidebar() {
       </div>
       <div className="mt-auto mb-10 w-full">
         <NavBtn func={handleSignOut} name={"Sign Out"} />
+        <footer className="w-full">
+          <p className="text-center text-sm text-gray-500">
+            © {new Date().getFullYear()} Sales app
+          </p>
+        </footer>
       </div>
     </div>
   );
